@@ -52,8 +52,13 @@
   border-color: #667eea;
 }
 
-.form-control:invalid:not(:placeholder-shown) {
+.form-control.invalid {
   border-color: #e74c3c;
+}
+
+.form-control:focus.invalid {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
 }
 
 textarea.form-control {
@@ -73,7 +78,7 @@ textarea.form-control {
   margin-top: 2rem;
 }
 
-.btn-submit, .btn-cancel {
+.btn-submit, .btn-reset, .btn-cancel {
   flex: 1;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
@@ -99,6 +104,16 @@ textarea.form-control {
   background: #ccc;
   cursor: not-allowed;
   transform: none;
+}
+
+.btn-reset {
+  background: #f39c12;
+  color: white;
+}
+
+.btn-reset:hover {
+  background: #e67e22;
+  transform: translateY(-2px);
 }
 
 .btn-cancel {
