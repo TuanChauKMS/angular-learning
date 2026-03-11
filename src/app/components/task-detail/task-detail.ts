@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TaskService } from '../../services/task';
-import { Task } from '../../models/task.model';
+import { Task, TaskPriority } from '../../models/task.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,14 +15,16 @@ import { Observable } from 'rxjs';
 export class TaskDetail implements OnInit {
   public task$!: Observable<Task | undefined>;
   public taskId!: number;
+  public readonly priorityClassMap: Record<TaskPriority, string> = {
+    [TaskPriority.LOW]: 'priority-low',
+    [TaskPriority.MEDIUM]: 'priority-medium',
+    [TaskPriority.HIGH]: 'priority-high',
+  };
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly taskService = inject(TaskService);
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private taskService: TaskService
-  ) {}
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.taskId = parseInt(id, 10);
@@ -45,9 +47,5 @@ export class TaskDetail implements OnInit {
 
   public onBack(): void {
     this.router.navigate(['/tasks']);
-  }
-
-  public getPriorityClass(priority: string): string {
-    return `priority-${priority}`;
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Task, TaskPriority, TaskStatus } from '../models/task.model';
@@ -11,8 +11,9 @@ export class TaskService {
   private tasksSubject = new BehaviorSubject<Task[]>(this.getInitialTasks());
   public tasks$: Observable<Task[]> = this.tasksSubject.asObservable();
   private nextId = 4;
+  private readonly logger = inject(Logger);
 
-  constructor(private logger: Logger) {
+  public constructor() {
     this.logger.log('TaskService initialized');
   }
 

@@ -10,7 +10,7 @@
       <div class="detail-header">
         <div class="header-left">
           <h1 [class.completed]="task.completed">{{ task.title }}</h1>
-          <span [class]="getPriorityClass(task.priority)" class="priority-badge">
+          <span [class]="priorityClassMap[task.priority]" class="priority-badge">
             {{ task.priority | uppercase }}
           </span>
         </div>

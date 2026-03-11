@@ -12,13 +12,13 @@
         formControlName="title"
         placeholder="Enter task title (min 3 characters)"
         class="form-control"
-        [class.invalid]="f['title'].invalid && (f['title'].touched || submitted)">
-      @if (f['title'].invalid && (f['title'].touched || submitted)) {
+        [class.invalid]="titleControl.invalid && (titleControl.touched || submitted)">
+      @if (titleControl.invalid && (titleControl.touched || submitted)) {
         <div class="error-message">
-          @if (f['title'].errors?.['required']) {
+          @if (titleControl.errors?.['required']) {
             <span>Title is required</span>
           }
-          @if (f['title'].errors?.['minlength']) {
+          @if (titleControl.errors?.['minlength']) {
             <span>Title must be at least 3 characters</span>
           }
         </div>
@@ -32,13 +32,13 @@
         rows="5"
         placeholder="Enter task description (min 10 characters)"
         class="form-control"
-        [class.invalid]="f['description'].invalid && (f['description'].touched || submitted)"></textarea>
-      @if (f['description'].invalid && (f['description'].touched || submitted)) {
+        [class.invalid]="descriptionControl.invalid && (descriptionControl.touched || submitted)"></textarea>
+      @if (descriptionControl.invalid && (descriptionControl.touched || submitted)) {
         <div class="error-message">
-          @if (f['description'].errors?.['required']) {
+          @if (descriptionControl.errors?.['required']) {
             <span>Description is required</span>
           }
-          @if (f['description'].errors?.['minlength']) {
+          @if (descriptionControl.errors?.['minlength']) {
             <span>Description must be at least 10 characters</span>
           }
         </div>

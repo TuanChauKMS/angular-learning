@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TaskService } from '../../services/task';
@@ -15,10 +15,9 @@ import { Observable } from 'rxjs';
 export class TaskList implements OnInit {
   public tasks$!: Observable<Task[]>;
   public selectedFilter: TaskStatus = 'all';
+  private readonly taskService = inject(TaskService);
 
-  constructor(private taskService: TaskService) {}
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loadTasks();
   }
 

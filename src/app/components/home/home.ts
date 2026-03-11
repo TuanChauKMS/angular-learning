@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TaskService } from '../../services/task';
 import { Observable } from 'rxjs';
+
+type TaskStats = { total: number; completed: number; active: number };
 
 @Component({
   selector: 'app-home',
@@ -12,11 +14,10 @@ import { Observable } from 'rxjs';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
-  public taskStats$!: Observable<{ total: number; completed: number; active: number }>;
+  public taskStats$!: Observable<TaskStats>;
+  private readonly taskService = inject(TaskService);
 
-  constructor(private taskService: TaskService) {}
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.taskStats$ = this.taskService.getTaskStats();
   }
 }
