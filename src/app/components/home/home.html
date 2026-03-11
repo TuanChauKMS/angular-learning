@@ -1,0 +1,49 @@
+<div class="home-container">
+  <div class="hero-section">
+    <h1>Angular Learning App</h1>
+  </div>
+
+  @if (taskStats$ | async; as stats) {
+    <div class="stats-container">
+      <div class="stat-card">
+        <h3>Total Tasks</h3>
+        <p class="stat-number">{{ stats.total }}</p>
+      </div>
+      <div class="stat-card">
+        <h3>Active Tasks</h3>
+        <p class="stat-number active">{{ stats.active }}</p>
+      </div>
+      <div class="stat-card">
+        <h3>Completed Tasks</h3>
+        <p class="stat-number completed">{{ stats.completed }}</p>
+      </div>
+    </div>
+  }
+
+  <div class="features-section">
+    <h2>What You'll Learn</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Components</h3>
+        <p>Building blocks of Angular apps with encapsulated logic and views</p>
+      </div>
+      <div class="feature-card">
+        <h3>Services</h3>
+        <p>Reusable business logic and data sharing with dependency injection</p>
+      </div>
+      <div class="feature-card">
+        <h3>Routing</h3>
+        <p>Navigation between different views in your application</p>
+      </div>
+      <div class="feature-card">
+        <h3>State Management</h3>
+        <p>Managing application state using RxJS and Observables</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <a routerLink="/tasks" class="btn-primary">View Tasks</a>
+    <a routerLink="/tasks/new" class="btn-secondary">Create New Task</a>
+  </div>
+</div>

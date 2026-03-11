@@ -1,0 +1,51 @@
+<div class="about-container">
+  <div class="hero">
+    <h1>About {{ appName }}</h1>
+    <p class="version">Version {{ version }}</p>
+    <p class="tagline">A comprehensive learning application for mastering Angular fundamentals</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Core Concepts Demonstrated</h2>
+    <div class="concepts-grid">
+      @for (concept of concepts; track concept.title) {
+        <div class="concept-card">
+          <div class="concept-icon">{{ concept.icon }}</div>
+          <h3>{{ concept.title }}</h3>
+          <p>{{ concept.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>Features Implemented</h2>
+    <ul class="features-list">
+      @for (feature of features; track feature) {
+        <li>{{ feature }}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Learning Objectives</h2>
+    <div class="objectives">
+      <p>By exploring this application, you will understand:</p>
+      <ul>
+        <li>How to create and organize Angular components</li>
+        <li>Service creation and dependency injection patterns</li>
+        <li>State management using RxJS Observables</li>
+        <li>Angular routing and navigation</li>
+        <li>Template-driven forms and two-way data binding</li>
+        <li>TypeScript patterns (interfaces, enums, types)</li>
+        <li>Component lifecycle hooks</li>
+        <li>Angular directives (*ngIf, *ngFor, etc.)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ready to Explore?</h2>
+    <a routerLink="/" class="btn-primary">Get Started</a>
+  </div>
+</div>
