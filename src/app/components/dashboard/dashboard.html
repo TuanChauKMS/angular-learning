@@ -1,0 +1,11 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Dashboard</h1>
+    <p class="welcome">Welcome, <strong>{{ user.displayName }}</strong> ({{ user.username }}).</p>
+  </header>
+
+  <div class="actions">
+    <button type="button" class="btn-logout" (click)="logout()">Sign out</button>
+    <a routerLink="/" class="btn-link">← Home</a>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Login</h1>
+    <p class="hint">Use mock credentials to access the dashboard.</p>
+
+    <form (ngSubmit)="onSubmit()" class="login-form">
+      <div class="field">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          placeholder="e.g. demo"
+          autocomplete="username"
+        />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="e.g. demo"
+          autocomplete="current-password"
+        />
+      </div>
+
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+
+      <button type="submit" class="btn-primary">Sign in</button>
+    </form>
+
+    <p class="mock-hint">Mock users: <strong>demo / demo</strong>, <strong>admin / admin</strong></p>
+    <a routerLink="/" class="back-link">← Back to Home</a>
+  </div>
+</div>

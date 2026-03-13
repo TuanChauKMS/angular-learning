@@ -1,0 +1,158 @@
+.api-demo-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+}
+
+.controls {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.35rem;
+}
+
+.input-group input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.btn {
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-get {
+  background: #667eea;
+  color: white;
+}
+
+.btn-get:hover:not(:disabled) {
+  background: #5568d3;
+}
+
+.btn-post {
+  background: #27ae60;
+  color: white;
+}
+
+.btn-post:hover:not(:disabled) {
+  background: #219a52;
+}
+
+.btn-put {
+  background: #f39c12;
+  color: white;
+}
+
+.btn-put:hover:not(:disabled) {
+  background: #e08e0b;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover:not(:disabled) {
+  background: #c0392b;
+}
+
+.status {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.status.loading {
+  color: #667eea;
+}
+
+.status.error {
+  color: #e74c3c;
+}
+
+.status.success {
+  color: #27ae60;
+}
+
+.response-section {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 1.25rem;
+  overflow: auto;
+}
+
+.response-section h2 {
+  font-size: 1rem;
+  color: #aaa;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.response-json {
+  margin: 0;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #d4d4d4;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
