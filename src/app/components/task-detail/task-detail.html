@@ -1,0 +1,82 @@
+<div class="detail-container">
+  @if (task$ | async; as task) {
+    <div class="breadcrumb">
+      <a routerLink="/tasks" class="breadcrumb-link">Tasks</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-current">{{ task.title }}</span>
+    </div>
+
+    <div class="detail-card">
+      <div class="detail-header">
+        <div class="header-left">
+          <h1 [class.completed]="task.completed">{{ task.title }}</h1>
+          <span [class]="priorityClassMap[task.priority]" class="priority-badge">
+            {{ task.priority | uppercase }}
+          </span>
+        </div>
+        
+        <div class="status-toggle">
+          <label class="toggle-label">
+            <input 
+              type="checkbox" 
+              [checked]="task.completed"
+              (change)="onToggleComplete()">
+            <span class="toggle-text">
+              {{ task.completed ? 'Completed' : 'Mark as Complete' }}
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2>Description</h2>
+        <p class="description-text">{{ task.description }}</p>
+      </div>
+
+      <div class="detail-section">
+        <h2>Task Information</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Task ID:</span>
+            <span class="info-value">{{ task.id }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Status:</span>
+            <span class="info-value" [class.status-completed]="task.completed">
+              {{ task.completed ? 'Completed' : 'Active' }}
+            </span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Priority:</span>
+            <span class="info-value">{{ task.priority | uppercase }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Created:</span>
+            <span class="info-value">{{ task.createdAt | date:'full' }}</span>
+          </div>
+          @if (task.dueDate) {
+            <div class="info-item">
+              <span class="info-label">Due Date:</span>
+              <span class="info-value due-date">{{ task.dueDate | date:'full' }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <button (click)="onBack()" class="btn-back">
+          ← Back to List
+        </button>
+        <button (click)="onDelete(task.title)" class="btn-delete">
+          Delete Task
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div class="not-found">
+      <h2>Task Not Found</h2>
+      <p>The task you're looking for doesn't exist or has been deleted.</p>
+      <a routerLink="/tasks" class="btn-back-inline">Back to Task List</a>
+    </div>
+  }
+</div>

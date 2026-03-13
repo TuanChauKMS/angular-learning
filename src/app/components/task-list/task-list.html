@@ -1,0 +1,72 @@
+<div class="task-list-container">
+  <div class="header-section">
+    <h1>Task List</h1>
+    <a routerLink="/tasks/new" class="btn-create">+ Create New Task</a>
+  </div>
+
+  <div class="filter-bar">
+    <button 
+      [class.active]="selectedFilter === 'all'"
+      (click)="onFilterChange('all')"
+      class="filter-btn">
+      All Tasks
+    </button>
+    <button 
+      [class.active]="selectedFilter === 'active'"
+      (click)="onFilterChange('active')"
+      class="filter-btn">
+      Active
+    </button>
+    <button 
+      [class.active]="selectedFilter === 'completed'"
+      (click)="onFilterChange('completed')"
+      class="filter-btn">
+      Completed
+    </button>
+  </div>
+
+  @if (tasks$ | async; as tasks) {
+    <div class="tasks-grid">
+      @for (task of tasks; track task.id) {
+        <div class="task-card">
+          <div class="task-header">
+            <div class="task-title-section">
+              <input 
+                type="checkbox" 
+                [checked]="task.completed"
+                (change)="onToggleComplete(task.id)"
+                class="task-checkbox">
+              <h3 [class.completed]="task.completed">{{ task.title }}</h3>
+            </div>
+            <span [class]="getPriorityClass(task.priority)" class="priority-badge">
+              {{ task.priority }}
+            </span>
+          </div>
+          <p class="task-description">{{ task.description }}</p>
+          <div class="task-meta">
+            <span class="task-date">Created: {{ task.createdAt | date:'short' }}</span>
+            @if (task.dueDate) {
+              <span class="task-due">Due: {{ task.dueDate | date:'short' }}</span>
+            }
+          </div>
+          <div class="task-actions">
+            <a [routerLink]="['/tasks', task.id]" class="btn-view">View Details</a>
+            <button 
+              (click)="onDeleteTask(task.id, task.title)" 
+              class="btn-delete">
+              Delete
+            </button>
+          </div>
+        </div>
+      }
+      @if (tasks.length === 0) {
+        <div class="no-tasks">
+          <p>No tasks found. Create your first task!</p>
+          <a routerLink="/tasks/new" class="btn-create-inline">Create Task</a>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="loading">Loading tasks...</div>
+  }
+</div>

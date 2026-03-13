@@ -1,0 +1,27 @@
+<div class="home-container">
+  <div class="hero-section">
+    <h1>Angular Learning App</h1>
+  </div>
+
+  @if (taskStats$ | async; as stats) {
+    <div class="stats-container">
+      <div class="stat-card">
+        <h3>Total Tasks</h3>
+        <p class="stat-number">{{ stats.total }}</p>
+      </div>
+      <div class="stat-card">
+        <h3>Active Tasks</h3>
+        <p class="stat-number active">{{ stats.active }}</p>
+      </div>
+      <div class="stat-card">
+        <h3>Completed Tasks</h3>
+        <p class="stat-number completed">{{ stats.completed }}</p>
+      </div>
+    </div>
+  }
+
+  <div class="cta-section">
+    <a routerLink="/tasks" class="btn-primary">View Tasks</a>
+    <a routerLink="/tasks/new" class="btn-secondary">Create New Task</a>
+  </div>
+</div>

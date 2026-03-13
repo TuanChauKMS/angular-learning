@@ -1,0 +1,96 @@
+<div class="form-container">
+  <div class="form-header">
+    <h1>Create New Task</h1>
+    <p>Fill in the details below to create a new task</p>
+  </div>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+    <div class="form-group">
+      <label for="title">Task Title *</label>
+      <input 
+        type="text" 
+        id="title"
+        formControlName="title"
+        placeholder="Enter task title (min 3 characters)"
+        class="form-control"
+        [class.invalid]="titleControl.invalid && (titleControl.touched || submitted)">
+      @if (titleControl.invalid && (titleControl.touched || submitted)) {
+        <div class="error-message">
+          @if (titleControl.errors?.['required']) {
+            <span>Title is required</span>
+          }
+          @if (titleControl.errors?.['minlength']) {
+            <span>Title must be at least 3 characters</span>
+          }
+        </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="description">Description *</label>
+      <textarea 
+        id="description"
+        formControlName="description"
+        rows="5"
+        placeholder="Enter task description (min 10 characters)"
+        class="form-control"
+        [class.invalid]="descriptionControl.invalid && (descriptionControl.touched || submitted)"></textarea>
+      @if (descriptionControl.invalid && (descriptionControl.touched || submitted)) {
+        <div class="error-message">
+          @if (descriptionControl.errors?.['required']) {
+            <span>Description is required</span>
+          }
+          @if (descriptionControl.errors?.['minlength']) {
+            <span>Description must be at least 10 characters</span>
+          }
+        </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <select 
+        id="priority"
+        formControlName="priority"
+        class="form-control">
+        @for (option of priorityOptions; track option) {
+          <option [value]="option">
+            {{ option | uppercase }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="dueDate">Due Date (Optional)</label>
+      <input 
+        type="datetime-local"
+        id="dueDate"
+        formControlName="dueDate"
+        class="form-control">
+    </div>
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        [disabled]="submitted && taskForm.invalid"
+        class="btn-submit">
+        Create Task
+      </button>
+      <button 
+        type="button"
+        (click)="onReset()"
+        class="btn-reset">
+        Reset
+      </button>
+      <button 
+        type="button"
+        (click)="onCancel()"
+        class="btn-cancel">
+        Cancel
+      </button>
+    </div>
+  </form>
+  <div class="debug-info">
+    <h3>Form Values (Debug):</h3>
+    <pre>{{ taskForm.value | json }}</pre>
+    <p>Form Valid: {{ taskForm.valid }}</p>
+    <p>Form Dirty: {{ taskForm.dirty }}</p>
+    <p>Form Touched: {{ taskForm.touched }}</p>
+  </div>
+</div>

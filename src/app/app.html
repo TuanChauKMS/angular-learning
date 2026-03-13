@@ -1,0 +1,29 @@
+<div class="app-container">
+  @if (isLoggedIn$ | async) {
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="nav-brand">
+          <a routerLink="/" class="brand-link">
+            {{ title }}
+          </a>
+        </div>
+        <ul class="nav-menu">
+          @for (item of navItems; track item.path) {
+            <li>
+              <a
+                [routerLink]="item.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: item.exact }"
+                class="nav-link">
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </nav>
+  }
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

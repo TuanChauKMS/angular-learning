@@ -1,0 +1,50 @@
+<div class="api-demo-container">
+  <header class="page-header">
+    <h1>API Demo</h1>
+    <p class="subtitle">HTTP calls to JSONPlaceholder (GET, POST, PUT, DELETE). Response shown as JSON below.</p>
+  </header>
+
+  @if (state$ | async; as state) {
+    <section class="controls">
+      <div class="input-group">
+        <label for="resourceId">Resource ID (for GET one, PUT, DELETE)</label>
+        <input id="resourceId" type="text" [(ngModel)]="resourceId" placeholder="1" />
+      </div>
+      <div class="input-group">
+        <label for="postTitle">Title (POST/PUT)</label>
+        <input id="postTitle" type="text" [(ngModel)]="postTitle" placeholder="Demo title" />
+      </div>
+      <div class="input-group">
+        <label for="postBody">Body (POST/PUT)</label>
+        <input id="postBody" type="text" [(ngModel)]="postBody" placeholder="Demo body" />
+      </div>
+      <div class="input-group">
+        <label for="postUserId">User ID (POST/PUT)</label>
+        <input id="postUserId" type="text" [(ngModel)]="postUserId" placeholder="1" />
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="btn btn-get" (click)="getList()" [disabled]="state.loading">GET list</button>
+        <button type="button" class="btn btn-get" (click)="getOne()" [disabled]="state.loading">GET one</button>
+        <button type="button" class="btn btn-post" (click)="post()" [disabled]="state.loading">POST</button>
+        <button type="button" class="btn btn-put" (click)="put()" [disabled]="state.loading">PUT</button>
+        <button type="button" class="btn btn-delete" (click)="delete()" [disabled]="state.loading">DELETE</button>
+      </div>
+    </section>
+
+    @if (state.loading) {
+      <p class="status loading">Loading…</p>
+    }
+    @if (state.error) {
+      <p class="status error">Error: {{ state.error }}</p>
+    }
+    @if (state.lastMethod && !state.loading) {
+      <p class="status success">Last request: {{ state.lastMethod }}</p>
+    }
+
+    <section class="response-section">
+      <h2>Response (JSON)</h2>
+      <pre class="response-json">{{ state.responseJson }}</pre>
+    </section>
+  }
+</div>
